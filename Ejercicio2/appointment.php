@@ -31,7 +31,7 @@ function getDateTime($conn)
     $initTime = date("H:i:s", mktime(10, 0, 0));
     $endTime = date("H:i:s", mktime(22, 0, 0)); 
     $currentDate = date("Y-m-d");
-    $currentTime = date("H:i:s");
+    $currentTime = date("H") . ":00:00";
 
     // select the last appointment in the ddbb
     $sql = "SELECT date_appointment, time_appointment FROM appointment ORDER BY date_appointment DESC, time_appointment DESC LIMIT 1";

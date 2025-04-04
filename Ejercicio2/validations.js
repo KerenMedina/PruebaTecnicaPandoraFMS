@@ -73,7 +73,6 @@ function existsDni() {
     let params = {
         "dni": dni,
     };
-    console.log(params);
     // ajax call to check if dni actually exists in ddbb
     $.ajax({
         url: 'checkDni.php',
@@ -85,7 +84,6 @@ function existsDni() {
     })
         .done(function (response) {
             if (response.success == true) {
-                console.log("El DNI ya existe en la base de datos");
                 $("#appointment_type").prop("disabled", false);
                 return true;
             } else {
@@ -130,7 +128,6 @@ function checkButton() {
             "email": $("#email").val(),
             "appointment_type": $("#appointment_type").val()
         };
-        console.log(params);
         // ajax call to insert the patient and get the appointment
         $.ajax({
             url: "appointment.php",
@@ -145,7 +142,6 @@ function checkButton() {
                 if (response.success) divResult.html('Se ha generado la cita para el día ' + response.appointmentDate + ' a las ' + response.appointmentTime);
                 else {
                     divResult.html("Error al generar la cita");
-                    console.log("error");
                 }
             })
             .fail(function (jqXHR, textStatus) {

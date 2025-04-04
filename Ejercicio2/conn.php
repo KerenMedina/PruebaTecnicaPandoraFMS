@@ -1,15 +1,15 @@
 <?php
 // Keren Medina Costa 03/04/2025
 
-$servername = "localhost";
-$username = "root";
-$password = "";
+$servername = "db";
+$username = "keren";
+$password = "keren1234";
 $dbname = "clinic";
 
-// Crear conexión
+// create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Comprobar conexión
+// check connection
 if ($conn->connect_error) {
     die("Conexión fallida: " . $conn->connect_error);
 }
