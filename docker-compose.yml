@@ -1,0 +1,46 @@
+services:
+  apache:
+    image: php:8.0-apache
+    container_name: apache
+    volumes:
+      - ./ejercicio1:/var/www/html/ejercicio1
+      - ./ejercicio2:/var/www/html/ejercicio2
+    ports:
+      - "80:80"
+    depends_on:
+      - db
+    networks:
+      - default
+    command: bash -c "docker-php-ext-install mysqli && apache2-foreground"
+
+  db:
+    image: mysql:8.0
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: clinic
+      MYSQL_USER: keren
+      MYSQL_PASSWORD: keren1234
+    volumes:
+    - ./ejercicio2:/docker-entrypoint-initdb.d
+    networks:
+      - default
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+    networks:
+      - default
+
+volumes:
+  db_data:
+
+networks:
+  default:

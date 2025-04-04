@@ -1,7 +1,48 @@
+
+---
+## Requisitos Generales
+
+- PHP 8
+- MySQL
+- Servidor Apache
+- Docker instalado
+
+---
+
+## Docker
+
+### Para ejecutar ambas aplicaciones utilizando Docker Compose, sigue los pasos a continuación.
+1. Clonar el repositorio y navegar al directorio del proyecto
+    Si aún no has clonado el repositorio, ejecuta:
+```bash
+    git clone https://github.com/KerenMedina/PruebaTecnicaPandoraFMS.git
+    cd PruebaTecnicaPandoraFMS
+```
+2. Logearse a docker si aún no lo has hecho
+    Ejecuta el siguiente comando y sigue las instrucciones
+```bash
+    docker login
+```
+3. Crear y ejecutar los contenedores Docker
+    Ejecuta el siguiente comando para iniciar los servicios en Docker:
+```bash
+    docker compose up -d
+```
+
+4. Accede a las aplicaciones:
+
+- **Ejercicio 1**: Accede a la aplicación a través de `http://localhost/ejercicio1/decodeFile.php`
+- **Ejercicio 2**: Accede a la aplicación a través de `http://localhost/ejercicio2/index.php`
+- **phpMyAdmin**: Accede a `http://localhost:8080` para gestionar la base de datos.
+                    Usuario: root
+                    Contraseña: root
+
+---
+
+
 # EJERCICIO 1
 
 Este es un segundo ejercicio que contiene un archivo CSV con datos que deben ser procesados. El archivo `decodeFile.php` decodifica un puntaje inicial de acuerdo a una serie de reglas definidas en una función `decode`, utilizando una cadena de dígitos y un puntaje inicial. El resultado es un puntaje final calculado y ordenado en orden descendente.
-
 
 ### Estructura del proyecto Ejercicio1
 
@@ -10,10 +51,10 @@ ejercicio1/
 ├── data.csv
 └── decodeFile.php
 ```
+
 ## Uso
 
-1. Acceder a `decodeFile.php`, leerá el fichero que tenga el nombre `data.csv` y decodificará los datos
-
+1. Acceder a `decodeFile.php`, leerá el fichero que tenga el nombre `data.csv` y decodificará los datos.
 
 ---
 
@@ -30,33 +71,9 @@ Este es un sistema para gestionar las citas de pacientes en una clínica. Permit
 
 ---
 
-## Requisitos
-
-- PHP 8
-- MySQL
-- Servidor Apache
-
----
-
 ## Instalación
 
-### 1. Crear la base de datos
-
-Ejecutar el archivo `createBBDD.sql`
-
-### 2. Conectar a la base de datos
-
-Asegúrate de tener configurado correctamente el archivo `conn.php` con los datos de conexión a tu base de datos MySQL.
-
-```php
-// conn.php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "clinic";
-```
-
-### 3. Archivos del proyecto
+### 1. Archivos del proyecto
 
 - `index.php`: Página principal para que el usuario ingrese los datos de la cita.
 - `appointment.php`: Archivo que procesa la información del paciente y genera la cita.
@@ -64,7 +81,7 @@ $dbname = "clinic";
 - `validations.js`: Contiene las validaciones de los datos introducidos por el usuario.
 - `conn.php`: Conexión a la base de datos MySQL.
 
-### 4. Estructura del proyecto
+### 2. Estructura del proyecto
 
 ```
 ejercicio2/
@@ -94,6 +111,6 @@ La hora y fecha de la cita se asignan de acuerdo a la disponibilidad, con las si
 - Si la hora actual es posterior a las 10:00 AM pero antes de las 10:00 PM, la cita se asigna al siguiente horario disponible (una hora después de la última cita registrada).
 - Si la hora actual es posterior a las 10:00 PM, la cita se asigna al día siguiente a las 10:00 AM.
 
----
+
 
 CÓDIGO DESARROLLADO POR KEREN MEDINA COSTA 03/04/2025
