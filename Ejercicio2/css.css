@@ -1,0 +1,70 @@
+/* estilos.css */
+
+/* General */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f9fc;
+    color: #333;
+    max-width: 500px;
+    align-content: left;
+    margin: 100spx ;
+}
+
+
+/* Títulos */
+h1, h2 {
+    text-align: center;
+    color: #2c3e50;
+}
+
+/* Formularios */
+form {
+    display: inline;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Etiquetas y campos */
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input, select {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Botón */
+button {
+    padding: 12px;
+    background-color: #3498db;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+div.success {
+    margin-bottom: 10px;
+    font-size: 15px;
+    color: black;
+    background-color: darkseagreen;
+}
+
+div.error {
+    margin-bottom: 10px;
+    font-size: 15px;
+    color: black;
+    background-color:darksalmon;
+}
