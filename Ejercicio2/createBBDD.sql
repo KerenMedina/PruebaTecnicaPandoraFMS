@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS patients (
 CREATE TABLE IF NOT EXISTS appointment (
     id INT AUTO_INCREMENT PRIMARY KEY,
     id_patient INT,
-    appointment_type ENUM('Primera consulta', 'Revisión') NOT NULL,
+    appointment_type VARCHAR(50) NOT NULL,
     date_appointment DATE NOT NULL,
     time_appointment TIME NOT NULL,
     FOREIGN KEY (id_patient) REFERENCES patients(id)

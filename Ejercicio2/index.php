@@ -28,8 +28,8 @@
 
         <label for="appointment_type">Tipo de cita:</label>
         <select id="appointment_type" name="appointment_type" disabled required>
-            <option selected value="Primera consulta">Primera consulta</option>
-            <option value="Revisión">Revisión</option>
+            <option value="Primera consulta">Primera consulta</option>
+            <option value="Revision">Revisión</option>
         </select><br><br>
         <div id="appointment_type_error" class="error" style="color: yellow;"></div>
 

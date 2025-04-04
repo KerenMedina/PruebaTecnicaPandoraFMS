@@ -85,20 +85,36 @@ function existsDni() {
         .done(function (response) {
             if (response.success == true) {
                 $("#appointment_type").prop("disabled", false);
-                return true;
+
             } else {
                 $("#appointment_type").prop("disabled", true);
-                return false;
+                $("#appointment_type").val("Primera consulta");
             }
         });
 }
+
+// if the appointment is assigned, clean the values of the form
+function cleanValues() {
+    $("#email").val("");
+    $("#email").html("");
+    $("#phone").val("");
+    $("#phone").html("");
+    $("#name").val("");
+    $("#name").html("");
+    $("#dni").val("");
+    $("#dni").html("");
+    $("#appointment_type").prop("disabled", true);
+    $("#appointment_type").val("Primera consulta");
+}
+
 // check if all fields are valid and send the data to the server
 function checkButton() {
-    $("#appointment_type").prop("disabled", false);
+    $("#result").html("");
     var dni = $("#dni").val();
     var phone = $("#phone").val();
     var email = $("#email").val();
     var name = $("#name").val();
+    var appointment_type = $("#appointment_type").val();
 
     var okphone = false;
     var okdni = false;
@@ -111,7 +127,7 @@ function checkButton() {
     if (checkEmail(email)) {
         okemail = true;
     }
-    
+
     if (checkPhone(phone)) {
         okphone = true;
     }
@@ -126,7 +142,7 @@ function checkButton() {
             "dni": dni,
             "phone": phone,
             "email": $("#email").val(),
-            "appointment_type": $("#appointment_type").val()
+            "appointment_type": appointment_type
         };
         // ajax call to insert the patient and get the appointment
         $.ajax({
@@ -137,9 +153,12 @@ function checkButton() {
             method: "POST"
         })
             .done(function (response) {
-                // if ajax correct shows message with the appointment
+                // if ajax correct shows message with the appointment and cleans the values
                 let divResult = $("#result");
-                if (response.success) divResult.html('Se ha generado la cita para el día ' + response.appointmentDate + ' a las ' + response.appointmentTime);
+                if (response.success) {
+                    divResult.html('Se ha generado la cita para el día ' + response.appointmentDate + ' a las ' + response.appointmentTime);
+                    cleanValues();
+                }
                 else {
                     divResult.html("Error al generar la cita");
                 }

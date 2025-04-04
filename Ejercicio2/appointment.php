@@ -34,7 +34,7 @@ function getDateTime($conn)
     $currentTime = date("H") . ":00:00";
 
     // select the last appointment in the ddbb
-    $sql = "SELECT date_appointment, time_appointment FROM appointment ORDER BY date_appointment DESC, time_appointment DESC LIMIT 1";
+    $sql = "SELECT date_appointment, time_appointment FROM appointment ORDER BY date_appointment DESC, time_appointment DESC LIMIT 1 for update";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
@@ -66,18 +66,8 @@ function getDateTime($conn)
             $newDate = date("Y-m-d", strtotime("+1 day", strtotime($currentDate)));
             $newTime = $initTime;
         } else {
-            // if current hour is between 10:00 and 22:00 check current hour +1
-            $newTimeStamp = strtotime("+1 hour", strtotime($currentTime));
-            $newTime = date("H:i:s", $newTimeStamp);
-
-            // if current hour +1 is after 22:00 assing next day 10:00
-            if ($newTime > $endTime) {
-                $newDate = date("Y-m-d", strtotime("+1 day", strtotime($currentDate)));
-                $newTime = $initTime;
-            } else {
-                // if current hour is ok assing current hour +1 and current day
-                $newDate = $currentDate;
-            }
+            $newDate = $currentDate;
+            $newTime = $currentTime;
         }
     }
 
